@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Corte Teatral - Teatro Navideño 2025</title>
+    <!-- Open Graph / Twitter Card meta tags: muestra logo_completo.png al compartir -->
+    <!-- Si tu sitio se publica en otra URL actualiza og:url y las rutas absolutas a la imagen -->
+    <meta property="og:title" content="La Corte Teatral - Teatro Navideño 2025">
+    <meta property="og:description" content="¡La Navidad se vive sobre el escenario!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vegalfredo.github.io/Pastorelas_laCorte_Teatral/">
+    <meta property="og:image" content="https://vegalfredo.github.io/Pastorelas_laCorte_Teatral/imagenes/logo_completo.png">
+    <meta property="og:image:alt" content="La Corte Teatral - logo">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="La Corte Teatral - Teatro Navideño 2025">
+    <meta name="twitter:description" content="¡La Navidad se vive sobre el escenario!">
+    <meta name="twitter:image" content="https://vegalfredo.github.io/Pastorelas_laCorte_Teatral/imagenes/logo_completo.png">
+
+    <!-- fallback for some crawlers -->
+    <link rel="image_src" href="imagenes/logo_completo.png">
     <style>
         * {
             margin: 0;
@@ -709,6 +725,7 @@
             transform: translateY(-4px);
             box-shadow: 0 18px 50px rgba(37,211,102,0.26);
         }
+        
     </style>
 </head>
 <body>
@@ -790,18 +807,6 @@
                 <div class="production-content">
                     <h3 class="production-title">Pastorela Tradicional</h3>
                     <p class="production-description">
-                        <div class="detail-item">
-                            <span class="detail-label">🔧 Montaje:</span>
-                            2 horas
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">🚿 Camerino:</span>
-                            Espejo y baño para 6 personas
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">🔈 Audio & Iluminación:</span>
-                            Reproductor de USB o cable con extensión para audífono 3.5 mm. Iluminación con la que cuente el auditorio.
-                        </div>
                         La tradicional pastorela para toda la familia. El salvador del mundo está por nacer y el ángel Gabriel tiene que avisarle a los pastores para que vayan a alabarlo, pero las fuerzas de la oscuridad intentarán impedírselos.
                     </p>
                     <div class="production-details">
@@ -1281,6 +1286,8 @@
 
             if (waBtn) waBtn.addEventListener('click', function(e){ e.preventDefault(); openWhatsApp(); });
             if (waCtaBtn) waCtaBtn.addEventListener('click', function(e){ e.preventDefault(); openWhatsApp(); });
+            
+            
         })();
     </script>
 </body>
