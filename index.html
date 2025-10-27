@@ -59,7 +59,11 @@
         /* Header Hero */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--dark-green) 0%, var(--red) 100%);
+            /* Imagen de fondo + overlay para mantener legibilidad */
+            background-image: linear-gradient(135deg, rgba(15,61,44,0.7), rgba(139,0,0,0.6)), url('imagenes/corona.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -132,6 +136,8 @@
             text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
             margin-bottom: 1rem;
             animation: glow 2s ease-in-out infinite;
+            font-weight: 800;
+            letter-spacing: 2px;
         }
 
         @keyframes glow {
@@ -201,6 +207,8 @@
             margin-bottom: 3rem;
             position: relative;
             animation: slideIn 1s ease-out;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         @keyframes slideIn {
@@ -280,7 +288,7 @@
 
         .production-image {
             width: 100%;
-            height: 300px;
+            height: 400px;
             background: var(--dark-green);
             display: flex;
             align-items: center;
@@ -305,6 +313,138 @@
             100% { transform: translateX(100%); }
         }
 
+        .gallery-thumbnails {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            width: 120px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid var(--gold);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Modal Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            background: var(--red);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--gold);
+            color: var(--dark-green);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            background: var(--gold);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: white;
+            color: var(--dark-green);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.2rem;
+            background: var(--dark-green);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+        }
+
         .production-content {
             padding: 2rem;
         }
@@ -313,6 +453,7 @@
             font-size: 2rem;
             color: var(--red);
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .production-description {
@@ -440,6 +581,134 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* WhatsApp floating button */
+        .whatsapp-button {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: linear-gradient(180deg,#2fdc86,#12b35b);
+            color: white;
+            min-width: 220px;
+            height: 64px;
+            padding: 0 14px;
+            border-radius: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            box-shadow: 0 8px 30px rgba(37,211,102,0.25), 0 0 30px rgba(45,220,134,0.12) inset;
+            z-index: 10001;
+            cursor: pointer;
+            transition: transform 0.22s cubic-bezier(.2,.9,.3,1), box-shadow 0.22s ease;
+            text-decoration: none;
+            align-self: center;
+        }
+
+        .whatsapp-button .icon-wrap {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 44px;
+            box-shadow: 0 6px 18px rgba(18,179,91,0.15);
+        }
+
+        .whatsapp-button .label {
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: none;
+            color: #062b19;
+        }
+
+        /* green glow pulse */
+        @keyframes whatsappPulse {
+            0% { box-shadow: 0 8px 30px rgba(37,211,102,0.18), 0 0 0 rgba(37,211,102,0.0); }
+            50% { box-shadow: 0 12px 40px rgba(37,211,102,0.26), 0 0 40px rgba(37,211,102,0.08); }
+            100% { box-shadow: 0 8px 30px rgba(37,211,102,0.18), 0 0 0 rgba(37,211,102,0.0); }
+        }
+
+        .whatsapp-button.pulse {
+            animation: whatsappPulse 2.5s infinite;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 18px 50px rgba(37,211,102,0.35), 0 0 80px rgba(45,220,134,0.12) inset;
+        }
+
+        .whatsapp-button svg {
+            width: 22px;
+            height: 22px;
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .whatsapp-button {
+                right: 14px;
+                bottom: 14px;
+                min-width: 180px;
+                height: 56px;
+                padding: 0 10px;
+            }
+            .whatsapp-button .label { font-size: 13px; }
+            .whatsapp-button .icon-wrap { width: 40px; height: 40px; }
+        }
+
+        /* CTA banner above footer */
+        .whatsapp-cta-banner {
+            background: linear-gradient(90deg,#eafff1,#e0ffeb);
+            border-top: 4px solid rgba(37,211,102,0.12);
+            padding: 18px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            border-radius: 12px;
+            margin: 20px 0 12px 0;
+            box-shadow: 0 8px 30px rgba(10,80,40,0.04);
+        }
+
+        .whatsapp-cta-inner {
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 6px 12px;
+        }
+
+        .whatsapp-cta-text {
+            color: #0b3b23;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .whatsapp-cta-action {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .whatsapp-cta-action .cta-btn {
+            background: linear-gradient(180deg,#25d366,#12b35b);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(37,211,102,0.2);
+            border: none;
+            cursor: pointer;
+            transition: transform .16s ease, box-shadow .16s ease;
+        }
+
+        .whatsapp-cta-action .cta-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 50px rgba(37,211,102,0.26);
+        }
     </style>
 </head>
 <body>
@@ -507,9 +776,32 @@
                 <div class="production-image">
                     <img src="imagenes/pastorela-tradicional.jpg" alt="Pastorela Tradicional" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
+                <div class="gallery-thumbnails">
+                    <div class="thumbnail" data-gallery="pastorela-tradicional" data-index="0">
+                        <img src="imagenes/pastorela-tradicional-1.jpg" alt="Pastorela Tradicional 1">
+                    </div>
+                    <div class="thumbnail" data-gallery="pastorela-tradicional" data-index="1">
+                        <img src="imagenes/pastorela-tradicional-2.jpg" alt="Pastorela Tradicional 2">
+                    </div>
+                    <div class="thumbnail" data-gallery="pastorela-tradicional" data-index="2">
+                        <img src="imagenes/pastorela-tradicional-3.jpg" alt="Pastorela Tradicional 3">
+                    </div>
+                </div>
                 <div class="production-content">
                     <h3 class="production-title">Pastorela Tradicional</h3>
                     <p class="production-description">
+                        <div class="detail-item">
+                            <span class="detail-label">🔧 Montaje:</span>
+                            2 horas
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🚿 Camerino:</span>
+                            Espejo y baño para 6 personas
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🔈 Audio & Iluminación:</span>
+                            Reproductor de USB o cable con extensión para audífono 3.5 mm. Iluminación con la que cuente el auditorio.
+                        </div>
                         La tradicional pastorela para toda la familia. El salvador del mundo está por nacer y el ángel Gabriel tiene que avisarle a los pastores para que vayan a alabarlo, pero las fuerzas de la oscuridad intentarán impedírselos.
                     </p>
                     <div class="production-details">
@@ -529,6 +821,18 @@
                             <span class="detail-label">📐 Escenario:</span>
                             Mínimo 5 x 4 mtrs.
                         </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🔧 Montaje:</span>
+                            2 horas
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🚿 Camerino:</span>
+                            Espejo y baño para 5 personas
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🔈 Audio & Iluminación:</span>
+                            Reproductor de USB o cable con extensión para audífono 3.5 mm. Iluminación con la que cuente el auditorio.
+                        </div>
                     </div>
                     <div class="price-section">
                         <div>
@@ -544,6 +848,17 @@
             <div class="production-card fade-in">
                 <div class="production-image">
                     <img src="imagenes/pastorela-mentiras.jpg" alt="Una Pastorela de Mentiras" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="gallery-thumbnails">
+                    <div class="thumbnail" data-gallery="pastorela-mentiras" data-index="0">
+                        <img src="imagenes/pastorela-mentiras-1.jpg" alt="Pastorela de Mentiras 1">
+                    </div>
+                    <div class="thumbnail" data-gallery="pastorela-mentiras" data-index="1">
+                        <img src="imagenes/pastorela-mentiras-2.jpg" alt="Pastorela de Mentiras 2">
+                    </div>
+                    <div class="thumbnail" data-gallery="pastorela-mentiras" data-index="2">
+                        <img src="imagenes/pastorela-mentiras-3.jpg" alt="Pastorela de Mentiras 3">
+                    </div>
                 </div>
                 <div class="production-content">
                     <h3 class="production-title">Una Pastorela de Mentiras</h3>
@@ -567,6 +882,18 @@
                             <span class="detail-label">📐 Escenario:</span>
                             Mínimo 5 x 4 mtrs.
                         </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🔧 Montaje:</span>
+                            2 horas
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🚿 Camerino:</span>
+                            Espejo y baño para 3 personas
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🔈 Audio & Iluminación:</span>
+                            Reproductor de USB o cable con extensión para audífono 3.5 mm. Iluminación con la que cuente el auditorio.
+                        </div>
                     </div>
                     <div class="price-section">
                         <div>
@@ -582,6 +909,17 @@
             <div class="production-card fade-in">
                 <div class="production-image">
                     <img src="imagenes/secreto-navidad.jpg" alt="El Secreto de la Navidad" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="gallery-thumbnails">
+                    <div class="thumbnail" data-gallery="secreto-navidad" data-index="0">
+                        <img src="imagenes/secreto-navidad-1.jpg" alt="Secreto de la Navidad 1">
+                    </div>
+                    <div class="thumbnail" data-gallery="secreto-navidad" data-index="1">
+                        <img src="imagenes/secreto-navidad-2.jpg" alt="Secreto de la Navidad 2">
+                    </div>
+                    <div class="thumbnail" data-gallery="secreto-navidad" data-index="2">
+                        <img src="imagenes/secreto-navidad-3.jpg" alt="Secreto de la Navidad 3">
+                    </div>
                 </div>
                 <div class="production-content">
                     <h3 class="production-title">El Secreto de la Navidad</h3>
@@ -621,6 +959,17 @@
                 <div class="production-image">
                     <img src="imagenes/santa-duendes.jpg" alt="Santa y Duendes" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
+                <div class="gallery-thumbnails">
+                    <div class="thumbnail" data-gallery="santa-duendes" data-index="0">
+                        <img src="imagenes/santa-duendes-1.jpg" alt="Santa y Duendes 1">
+                    </div>
+                    <div class="thumbnail" data-gallery="santa-duendes" data-index="1">
+                        <img src="imagenes/santa-duendes-2.jpg" alt="Santa y Duendes 2">
+                    </div>
+                    <div class="thumbnail" data-gallery="santa-duendes" data-index="2">
+                        <img src="imagenes/santa-duendes-3.jpg" alt="Santa y Duendes 3">
+                    </div>
+                </div>
                 <div class="production-content">
                     <h3 class="production-title">Santa y Duendes</h3>
                     <p class="production-description">
@@ -643,6 +992,18 @@
                             <span class="detail-label">📸 Incluye:</span>
                             Interacción y fotos
                         </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🔧 Montaje:</span>
+                            2 horas
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🚿 Camerino:</span>
+                            Espejo y baño para 3 personas
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🔈 Audio & Iluminación:</span>
+                            Reproductor de USB o cable con extensión para audífono 3.5 mm. Iluminación con la que cuente el auditorio.
+                        </div>
                     </div>
                     <div class="price-section">
                         <div>
@@ -656,6 +1017,17 @@
             <div class="production-card fade-in">
                 <div class="production-image">
                     <img src="imagenes/reyes-magos.jpg" alt="Los Reyes Magos" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="gallery-thumbnails">
+                    <div class="thumbnail" data-gallery="reyes-magos" data-index="0">
+                        <img src="imagenes/reyes-magos-1.jpg" alt="Reyes Magos 1">
+                    </div>
+                    <div class="thumbnail" data-gallery="reyes-magos" data-index="1">
+                        <img src="imagenes/reyes-magos-2.jpg" alt="Reyes Magos 2">
+                    </div>
+                    <div class="thumbnail" data-gallery="reyes-magos" data-index="2">
+                        <img src="imagenes/reyes-magos-3.jpg" alt="Reyes Magos 3">
+                    </div>
                 </div>
                 <div class="production-content">
                     <h3 class="production-title">Los Reyes Magos</h3>
@@ -678,6 +1050,18 @@
                         <div class="detail-item">
                             <span class="detail-label">🎁 Incluye:</span>
                             Reparto de juguetes
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🔧 Montaje:</span>
+                            2 horas
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🚿 Camerino:</span>
+                            Espejo y baño para 3 personas
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">🔈 Audio & Iluminación:</span>
+                            Reproductor de USB o cable con extensión para audífono 3.5 mm. Iluminación con la que cuente el auditorio.
                         </div>
                     </div>
                     <div class="price-section">
@@ -771,6 +1155,133 @@
                 }
             });
         });
+    </script>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image">
+            <div class="lightbox-close">&times;</div>
+            <div class="lightbox-prev">&lt;</div>
+            <div class="lightbox-next">&gt;</div>
+            <div class="lightbox-counter">1 / 3</div>
+        </div>
+    </div>
+
+    <script>
+        // Gallery and Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = lightbox.querySelector('.lightbox-image');
+        const lightboxClose = lightbox.querySelector('.lightbox-close');
+        const lightboxPrev = lightbox.querySelector('.lightbox-prev');
+        const lightboxNext = lightbox.querySelector('.lightbox-next');
+        const lightboxCounter = lightbox.querySelector('.lightbox-counter');
+
+        let currentGallery = '';
+        let currentIndex = 0;
+        let galleryImages = [];
+
+        // Open lightbox
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                currentGallery = thumb.dataset.gallery;
+                currentIndex = parseInt(thumb.dataset.index);
+                galleryImages = Array.from(document.querySelectorAll(`[data-gallery="${currentGallery}"] img`));
+                
+                updateLightboxImage();
+                lightbox.classList.add('active');
+            });
+        });
+
+        // Close lightbox
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        // Previous image
+        lightboxPrev.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateLightboxImage();
+        });
+
+        // Next image
+        lightboxNext.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            updateLightboxImage();
+        });
+
+        // Update lightbox image
+        function updateLightboxImage() {
+            lightboxImage.src = galleryImages[currentIndex].src;
+            lightboxImage.alt = galleryImages[currentIndex].alt;
+            lightboxCounter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+            } else if (e.key === 'ArrowLeft') {
+                lightboxPrev.click();
+            } else if (e.key === 'ArrowRight') {
+                lightboxNext.click();
+            }
+        });
+
+        // Close on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+    </script>
+    <!-- WhatsApp floating button and CTA banner -->
+    <!--
+        Nota: asumo código de país +52 (México) para el número proporcionado 448 120 4431.
+        Si deseas otro país, reemplaza el valor de `waPhone` en el script abajo por el número internacional sin signos ni espacios.
+    -->
+
+    <!-- CTA banner visible en la parte final de la landing -->
+    <div class="container">
+        <div class="whatsapp-cta-banner" role="region" aria-label="Reserva por WhatsApp">
+            <div class="whatsapp-cta-inner">
+                <div class="whatsapp-cta-text">¿Quieres reservar? Contáctanos por WhatsApp y asegura tu función.</div>
+                <div class="whatsapp-cta-action">
+                    <button class="cta-btn" id="whatsappCtaBtn">¡Reserva por WhatsApp!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating button (persistente) -->
+    <a href="#" id="whatsappBtn" class="whatsapp-button pulse" aria-label="Contactar por WhatsApp" title="Contactar por WhatsApp">
+        <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20.52 3.48A11.92 11.92 0 0012 0C5.372 0 .053 5.319.053 11.947 0 14.383.7 16.7 1.98 18.68L0 24l5.48-1.82A11.92 11.92 0 0012 24c6.628 0 11.947-5.319 11.947-11.947 0-3.2-1.248-6.19-3.427-8.573z" fill="#25D366"/>
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.149-.199.297-.768.967-.942 1.166-.173.199-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.885-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.174.199-.298.298-.497.099-.199.05-.373-.025-.522-.074-.149-.672-1.62-.921-2.219-.242-.58-.487-.5-.672-.51l-.573-.01c-.199 0-.522.074-.797.373s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.199 2.095 3.2 5.076 4.487  .709.306 1.262.489 1.694.626.712.227 1.36.195 1.872.119.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.413-.074-.124-.273-.199-.57-.347z" fill="#fff"/>
+            </svg>
+        </div>
+        <div class="label">Reserva por WhatsApp</div>
+    </a>
+
+    <script>
+        (function(){
+            const waBtn = document.getElementById('whatsappBtn');
+            const waCtaBtn = document.getElementById('whatsappCtaBtn');
+            // Asunción: número local 4481204431 en México (+52). Cambia si es otro país.
+            const waPhone = '524481204431'; // formato internacional sin + ni espacios
+            const waMessage = 'ME INTERESA CONTRATAR una pastorela...';
+
+            function openWhatsApp(){
+                const url = 'https://wa.me/' + waPhone + '?text=' + encodeURIComponent(waMessage);
+                window.open(url, '_blank', 'noopener');
+            }
+
+            if (waBtn) waBtn.addEventListener('click', function(e){ e.preventDefault(); openWhatsApp(); });
+            if (waCtaBtn) waCtaBtn.addEventListener('click', function(e){ e.preventDefault(); openWhatsApp(); });
+        })();
     </script>
 </body>
 </html>
